@@ -10,7 +10,9 @@ def main_page(request):
 	# token = None
 	
 	#print('The request META ', request) #<QueryDict: {'token': ['RbVmGCkSQI']}>
+	#self.request=request
 	token = request.GET.get('token')
+	#self.tk=token
 	print(token) #RbVmGCkSQI
 	if token and len(Build.objects.filter(user_token=token)):
 		print(len(Build.objects.filter(user_token=token))) #1
@@ -24,7 +26,8 @@ def main_page(request):
 
 	return render(request,'main_page.html',{'config':config})
 
-def all_cpu(request, token): # token as a parameter
+def all_cpu(request): # token as a parameter
+	token = request.GET.get('token')
 	build = Build.objects.get(user_token=token)
 	build.cpu = None
 	socket_lst = build.socket_lst()
@@ -40,7 +43,8 @@ def all_cpu(request, token): # token as a parameter
 	cpu_lst=Cpu.objects.all()
 '''
 
-def all_cpu_cooler(request,token):
+def all_cpu_cooler(request):
+	token = request.GET.get('token')
 	build = Build.objects.get(user_token=token)
 	build.cooler = None
 	socket_lst = build.socket_lst()
@@ -51,7 +55,8 @@ def all_cpu_cooler(request,token):
 	
 	return render(request,'cooler_list.html', {'cpu_cooler_lst': cpu_cooler_lst,'token': token})
 
-def all_motherboard(request,token):
+def all_motherboard(request):
+	token = request.GET.get('token')
 	build = Build.objects.get(user_token=token)
 	build.motherboard = None
 	socket_lst = build.socket_lst()
@@ -61,19 +66,23 @@ def all_motherboard(request,token):
 		motherboard_lst = Motherboard.objects.all()
 	return render(request,'motherboard_lst.html', {'motherboard_lst': motherboard_lst,'token':token})
 
-def all_memory(request,token):
+def all_memory(request):
+	token = request.GET.get('token')
 	memory_lst = Memory.objects.all()
 	return render(request,'memory_lst.html', {'memory_lst': memory_lst,'token':token})
 
-def all_gpu(request,token):
+def all_gpu(request):
+	token = request.GET.get('token')
 	gpu_lst = Gpu.objects.all()
 	return render(request,'gpu_list.html', {'gpu_lst': gpu_lst,'token':token})
 
-def all_powersupply(request,token):
+def all_powersupply(request):
+	token = request.GET.get('token')
 	powersupply_lst = Power_supply.objects.all()
 	return render(request,'powersupply_lst.html', {'powersupply_lst': powersupply_lst,'token':token})
 
-def all_monitor(request,token):
+def all_monitor(request):
+	token = request.GET.get('token')
 	monitor_lst = Product.objects.all()
 	return render(request,'monitor_lst.html', {'monitor_lst': monitor_lst,'token':token})
 
@@ -85,10 +94,6 @@ def cpu_details(request, pkk):
 def cpu_image(request,num): 
 	my_cpu = Cpu.objects.get(pk=num)
 	return render(request,'cpu_image.html', {'my_cpu': my_cpu})
-
-'''def cooler_image(request,num):
-	my_cooler = Cpu_cooler.objects.get(pk=num)
-	return '''
 
 def checkout(request,num):
 	my_cpu = Cpu.objects.get(pk=num)

@@ -25,84 +25,85 @@
                 <th>Remove</th>
             </tr>
             <tr>
-                <td><a href="{% url 'all_cpu' token=config.user_token %}">CPU</td>
+                <td><a href="{% url 'all_cpu' %}?token={{ config.user_token }}">CPU</td>
                 <td>{{ config.cpu }}</td>
                 <td>{{ config.cpu.voltage }}</td>
                 <td><span id = "cpu">{{ config.cpu.price }}</td>
                 <td><img src="{{ config.cpu.cpu_image.url }}" with="75" height="75"></td>
-                <td><a href="{% url 'all_cpu' token=config.user_token %}" class="btn btn-info" role="button">+ Choose A CPU</a></td>
+                <td><a href="{% url 'all_cpu' %}?token={{ config.user_token }}" class="btn btn-info" role="button">+ Choose A CPU</a></td>
                 <td><a href="{% url 'del_cpu' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
                     <!-- click the 'all_cpu' defination to view the differences between the two href format -->
                 </td>
 
             </tr>
             <tr>
-                <td><a href="{% url 'all_cpu_cooler' token=config.user_token %}">CPU Cooler</td>
+                <td><a href="{% url 'all_cpu_cooler' %}?token={{ config.user_token }}">CPU Cooler</td>
                 <td>{{ config.cooler }}</td>
                 <td>{{ config.cooler.voltage }}</td>
                 <td><span id = "cooler">{{ config.cooler.price }}</span></td>
                 <td><img src="{{ config.cooler.cooler_image.url }}" with="75" height="75"></td>
-                <td><a href="{% url 'all_cpu_cooler' token=config.user_token %}" class="btn btn-info" role="button">+ Choose A CPU Cooler</a><td>
+                <td><a href="{% url 'all_cpu_cooler' %}?token={{ config.user_token }}" class="btn btn-info" role="button">+ Choose A CPU Cooler</a><td>
                 <td>
                     <a href="{% url 'del_cooler' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
                 </td>
             </tr>
     
             <tr>
-                <td><a href="{% url 'all_motherboard' token=config.user_token %}">Motherboard</td>
+                <td><a href="{% url 'all_motherboard' %}?token={{ config.user_token }}">Motherboard</td>
                 <td>{{ config.motherboard }}</td>
                 <td>{{ config.motherboard.voltage }}</td>
                 <td><span id = "motherboard">{{ config.motherboard.price }}</td>
                 <td><img src="{{ config.motherboard.motherboard_image.url }}" with="75" height="75"></td>
-                <td><a href="{% url 'all_motherboard' token=config.user_token %}" class="btn btn-info" role="button">+ Choose A Motherboard</a><td>
+                <td><a href="{% url 'all_motherboard' %}?token={{config.user_token }}" class="btn btn-info" role="button">+ Choose A Motherboard</a><td>
                 <td>
                     <a href="{% url 'del_motherboard' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
                 </td>
             </tr>
             
             <tr>
-                <td><a href="{% url 'all_memory' token=config.user_token%}">Memory</td>
+                <td><a href="{% url 'all_memory' %}?token={{ config.user_token }}">Memory</td>
                 <td>{{ config.memory }}</td>
                 <td>{{ config.memory.voltage }}</td>
                 <td><span id = "memory">{{ config.memory.price }}</td>
                 <td><img src="{{ config.memory.memory_image.url }}" with="75" height="75"></td>
-                <td><a href="{% url 'all_memory' token=config.user_token%}" class="btn btn-info" role="button">+ Choose A Memory</a><td>
+                <td><a href="{% url 'all_memory' %}?token={{ config.user_token }}" class="btn btn-info" role="button">+ Choose A Memory</a><td>
                 <td>
                     <a href="{% url 'del_memory' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
                 </td>
             </tr>
            
             <tr>
-                <td><a href="{% url 'all_gpu' token=config.user_token%}">Video Card</td>
+                <td><a href="{% url 'all_gpu' %}?token={{ config.user_token }}">Video Card</td>
                 <td>{{ config.gpu }}</td>
                 <td>{{ config.gpu.voltage }}</td>
                 <td><span id = "gpu">{{ config.gpu.price }}</td>
                 <td><img src="{{ config.gpu.gpu_image.url }}" with="75" height="75"></td>
-                <td><a href="{% url 'all_gpu'  token=config.user_token %}" class="btn btn-info" role="button">+ Choose A Video Card</a><td>
+                <td><a href="{% url 'all_gpu' %}?token={{ config.user_token }}" class="btn btn-info" role="button">+ Choose A Video Card</a><td>
                 <td>
                     <a href="{% url 'del_gpu' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
                 </td>
             </tr>
           
             <tr>
-                <td><a href="{% url 'all_powersupply' token=config.user_token%}">Power Supply</td>
+                <td><a href="{% url 'all_powersupply' %}?token={{ config.user_token}}">Power Supply</td>
                 <td>{{ config.power }}</td>
                 <td>{{ config.power.voltage }}</td>
                 <td><span id = "power">{{ config.power.price }}</td>
                 <td><img src="{{ config.power.power_image.url }}" with="75" height="75"></td>
-                <td><a href="{% url 'all_powersupply' token=config.user_token%}" class="btn btn-info" role="button">+ Choose A Power Supply</a><td>
+                <td><a href="{% url 'all_powersupply' %}?token={{ config.user_token }}" class="btn btn-info" role="button">+ Choose A Power Supply</a><td>
                 <td>
                     <a href="{% url 'del_power' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
                 </td>
             </tr>
          
             <tr>
-                <td><a href="{% url 'all_monitor' token=config.user_token%}">Monitor</td>
+                <td>{{config.user_token}}</td>
+                <td><a href="{% url 'all_monitor' %}?token={{ config.user_token }}">Monitor</td>
                 <td>{{ config.monitor }}</td>
                 <td>{{ config.monitor.voltage }}</td>
                 <td><span id = "monitor">{{ config.monitor.price }}</td>
                 <td><img src="{{ config.monitor.image.url }}" with="75" height="75"></td>
-                <td><a href="{% url 'all_monitor' token=config.user_token%}" class="btn btn-info" role="button">+ Choose A Monitor</a><td>
+                <td>+ Choose A Monitor<td>
                 <td>
                     <a href="{% url 'del_monitor' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
                 </td>

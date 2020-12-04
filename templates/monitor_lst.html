@@ -28,12 +28,13 @@
             <tbody>
                 {% for monitor in monitor_lst %}
                 <tr>
+                    <td>{{token}}</td>
                     <td>{{ monitor.brand }}</a></td>
                     <td>{{ monitor.id }}</td>
                     <td> {{ monitor.voltage }}</td>
                     <td style="color:red"> ${{ monitor.price }}</td>
                     <td> <img src="{{ monitor.image.url }}" with="75" height="75"> </td>
-                    <td><a href="{% url 'add_monitor' pkk=monitor.id %}?token={{ token }}" class="btn btn-success" role="button">Add</a></td>
+                    <td><a href="{% url 'add_monitor' pkk=monitor.id %}?token={{token}}" class="btn btn-success" role="button">Add</a></td>
                     <td>
                         <a href="{% url 'checkout' num=monitor.id %}" class="btn btn-info" role="button">Buy</a>
                     </td>
