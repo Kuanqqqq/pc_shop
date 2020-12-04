@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>PC Builder</title>
+    </head>
+    <body>
+
+    <div class="container">
+        <h2>PC Builder</h2>
+        <p>Please add your selection in the table:</p>
+        <table id ="BuildTable"class="table">
+            <tr>
+                <th>Component</th>
+                <th>Name</th>
+                <th>Voltage</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Choose</th>
+                <th>Remove</th>
+            </tr>
+            <tr>
+                <td><a href="{% url 'all_cpu' token=config.user_token %}">CPU</td>
+                <td>{{ config.cpu }}</td>
+                <td>{{ config.cpu.voltage }}</td>
+                <td><span id = "cpu">{{ config.cpu.price }}</td>
+                <td><img src="{{ config.cpu.cpu_image.url }}" with="75" height="75"></td>
+                <td><a href="{% url 'all_cpu' token=config.user_token %}" class="btn btn-info" role="button">+ Choose A CPU</a></td>
+                <td><a href="{% url 'del_cpu' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
+                    <!-- click the 'all_cpu' defination to view the differences between the two href format -->
+                </td>
+
+            </tr>
+            <tr>
+                <td><a href="{% url 'all_cpu_cooler' token=config.user_token %}">CPU Cooler</td>
+                <td>{{ config.cooler }}</td>
+                <td>{{ config.cooler.voltage }}</td>
+                <td><span id = "cooler">{{ config.cooler.price }}</span></td>
+                <td><img src="{{ config.cooler.cooler_image.url }}" with="75" height="75"></td>
+                <td><a href="{% url 'all_cpu_cooler' token=config.user_token %}" class="btn btn-info" role="button">+ Choose A CPU Cooler</a><td>
+                <td>
+                    <a href="{% url 'del_cooler' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
+                </td>
+            </tr>
+    
+            <tr>
+                <td><a href="{% url 'all_motherboard' token=config.user_token %}">Motherboard</td>
+                <td>{{ config.motherboard }}</td>
+                <td>{{ config.motherboard.voltage }}</td>
+                <td><span id = "motherboard">{{ config.motherboard.price }}</td>
+                <td><img src="{{ config.motherboard.motherboard_image.url }}" with="75" height="75"></td>
+                <td><a href="{% url 'all_motherboard' token=config.user_token %}" class="btn btn-info" role="button">+ Choose A Motherboard</a><td>
+                <td>
+                    <a href="{% url 'del_motherboard' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td><a href="{% url 'all_memory' token=config.user_token%}">Memory</td>
+                <td>{{ config.memory }}</td>
+                <td>{{ config.memory.voltage }}</td>
+                <td><span id = "memory">{{ config.memory.price }}</td>
+                <td><img src="{{ config.memory.memory_image.url }}" with="75" height="75"></td>
+                <td><a href="{% url 'all_memory' token=config.user_token%}" class="btn btn-info" role="button">+ Choose A Memory</a><td>
+                <td>
+                    <a href="{% url 'del_memory' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
+                </td>
+            </tr>
+           
+            <tr>
+                <td><a href="{% url 'all_gpu' token=config.user_token%}">Video Card</td>
+                <td>{{ config.gpu }}</td>
+                <td>{{ config.gpu.voltage }}</td>
+                <td><span id = "gpu">{{ config.gpu.price }}</td>
+                <td><img src="{{ config.gpu.gpu_image.url }}" with="75" height="75"></td>
+                <td><a href="{% url 'all_gpu'  token=config.user_token %}" class="btn btn-info" role="button">+ Choose A Video Card</a><td>
+                <td>
+                    <a href="{% url 'del_gpu' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
+                </td>
+            </tr>
+          
+            <tr>
+                <td><a href="{% url 'all_powersupply' token=config.user_token%}">Power Supply</td>
+                <td>{{ config.power }}</td>
+                <td>{{ config.power.voltage }}</td>
+                <td><span id = "power">{{ config.power.price }}</td>
+                <td><img src="{{ config.power.power_image.url }}" with="75" height="75"></td>
+                <td><a href="{% url 'all_powersupply' token=config.user_token%}" class="btn btn-info" role="button">+ Choose A Power Supply</a><td>
+                <td>
+                    <a href="{% url 'del_power' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
+                </td>
+            </tr>
+         
+            <tr>
+                <td><a href="{% url 'all_monitor' token=config.user_token%}">Monitor</td>
+                <td>{{ config.monitor }}</td>
+                <td>{{ config.monitor.voltage }}</td>
+                <td><span id = "monitor">{{ config.monitor.price }}</td>
+                <td><img src="{{ config.monitor.image.url }}" with="75" height="75"></td>
+                <td><a href="{% url 'all_monitor' token=config.user_token%}" class="btn btn-info" role="button">+ Choose A Monitor</a><td>
+                <td>
+                    <a href="{% url 'del_monitor' %}?token={{ config.user_token }}" class="btn btn" role="button">&#10060</a>
+                </td>
+            </tr>
+                
+        </table>
+        <div class="well">Total Price:<p id="total"></p> Total Voltage:<p id="voltage"></p>
+            <script>
+                function total(){
+                    var cpu={{ config.cpu.price }};
+                    var cooler={{ config.cooler.price }};
+                    var motherboard = {{ config.motherboard.price }};
+                    var memory = {{ config.memory.price }};
+                    var gpu = {{ config.gpu.price }};
+                    var power = {{ config.power.price }};
+                    var monitor = {{ config.monitor.price }};
+                    var total= cpu+cooler+motherboard+memory+gpu+power+monitor;
+                    return total;
+                }
+
+                function voltage(){
+                    var cpu={{ config.cpu.voltage}};
+                    var cooler={{ config.cooler.voltage}};
+                    var motherboard = {{ config.motherboard.voltage}};
+                    var gpu= {{config.gpu.voltage}};
+                    var memory = {{config.memory.voltage}};
+                    var total_voltage=cpu+cooler+motherboard+gpu+memory;
+                    return total_voltage;
+                }
+
+
+                document.getElementById("total").innerHTML=total()
+                document.getElementById("voltage").innerHTML=voltage()
+                ///document.getElementById("voltage_checker").innerHTML=voltage_checker({{config.power.voltage}},total())
+            </script>
+            
+
+
+        </div>
+    </div>
+
+    <!--<div class="container">
+        <a href="#" class="btn btn-danger" role="button">Test buy the ID:1 product</a>
+    </div>-->
+
+    </body>
+    </html>	

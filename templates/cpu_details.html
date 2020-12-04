@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CPU details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Bordered Table</h2>
+  <p>The .table-bordered class adds borders to a table:</p>            
+  <table class="table table-bordered">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td>{{my_cpu.cpu}}</td>
+      </tr>
+      <tr>
+        <th>ID</th>
+        <td>{{my_cpu.id}}</td>
+      </tr>
+      <tr>
+        <th>Voltage</th>
+        <td>{{my_cpu.voltage}}</td>
+      </tr>
+      <tr>
+          <th>Price</th>
+          <td>{{my_cpu.price}}</td>
+      </tr>
+
+      <tr>
+          <th>Picture</th>
+          <td><img src="{{ my_cpu.cpu_image.url }}" with="75" height="75"></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>CPU List</title>
+    </head>
+    <body>
+
+    <div class="container">
+        <h2>CPU Table</h2>
+        <p>The table shows {{ cpu_lst|length }} differen CPUs with name, price and image</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Socket</th>
+                    <th>Voltage</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for cpu in cpu_lst %}
+                <tr>
+                    <td><a href="{% url 'cpu_details' pkk=cpu.id %}"> {{ cpu.cpu }}</a></td>
+                    <td>{{ cpu.id }}</td>
+                    <td>{{cpu.socket}}</td>
+                    <td> {{ cpu.voltage }}</td>
+                    <td style="color:red"> {{ cpu.price }}</td>
+                    <td> <img src="{{ cpu.cpu_image.url }}" with="75" height="75">
+                        <a href="{% url 'cpu_image' num=cpu.id %}">img</a>
+                    </td>
+                    <td><a href="{% url 'add_cpu' pkk=cpu.id %}?token={{ token }}" class="btn btn-success" role="button">Add</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'checkout' num=cpu.id %}" class="btn btn-info" role="button">Buy</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <a href="#" class="btn btn-danger" role="button">Test buy the ID:1 product</a>
+    </div>
+
+    </body>
+    </html>	

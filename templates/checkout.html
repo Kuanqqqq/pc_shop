@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Checkout</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- <script src="jquery-3.5.1.min.js"></script> -->
+  <script>
+    function calculate() ///total price = qty*price
+    {
+      console.info("in calculate");
+      var qty = document.getElementById("qty").value;
+      console.info(qty);
+      var price = document.getElementById("price").innerHTML;
+      console.info(price);
+      var total = parseFloat(price)*qty;
+      console.info(total);
+
+      document.getElementById("total").innerHTML = total;
+    }
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Checkout</h2>
+  <p>The table shows what product you added in the cart:</p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Picture</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{my_cpu.cpu}}</td>
+        <td><img src="{{ my_cpu.cpu_image.url }}" with="75" height="75"></td>
+        <td>$<span id = "price">{{my_cpu.price}}</span></td>
+        <td>
+          <form action="{% url 'regiester_order' pk=my_cpu.id %}" method="post">  <!-- define the button's function  -->
+            {% csrf_token %}                                                      <!-- DONOT forget add a token here-->
+            <input id = "qty" name="qty" type="number" min="0" step="1" value="1" oninput="calculate()"/>  <!-- write a function to make output changes dynamically -->
+            <button type="submit">Buy</button>
+          </form>
+        </td>
+
+        <td><b>$<span id="total">{{my_cpu.price}}</span></b></td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
