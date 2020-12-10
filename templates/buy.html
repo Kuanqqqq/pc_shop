@@ -1,0 +1,5 @@
+{% if product.stock != 0 %}
+<a href="{% url 'checkout' num=product.id %}" class="btn btn-info" role="button">Buy</a>
+{% else %}
+<a>Buy</a>
+{% endif %}

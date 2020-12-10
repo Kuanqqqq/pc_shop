@@ -40,18 +40,19 @@
     </thead>
     <tbody>
       <tr>
-        <td>{{my_cpu.cpu}}</td>
-        <td><img src="{{ my_cpu.cpu_image.url }}" with="75" height="75"></td>
-        <td>$<span id = "price">{{my_cpu.price}}</span></td>
+        <td>{{product.name}}</td>
+        <td>{% include 'image.html' %}</td>
+        <td>$<span id = "price">{{product.price}}</span></td>
         <td>
-          <form action="{% url 'regiester_order' pk=my_cpu.id %}" method="post">  <!-- define the button's function  -->
+          <form action="{% url 'regiester_order' prod_name=prod_name pk=product.id %}" method="post">  <!-- define the button's function  -->
             {% csrf_token %}                                                      <!-- DONOT forget add a token here-->
             <input id = "qty" name="qty" type="number" min="0" step="1" value="1" oninput="calculate()"/>  <!-- write a function to make output changes dynamically -->
-            <button type="submit">Buy</button>
+            <button type="submit">Buy NOW!</button>
           </form>
+            <button type="button">Add to Cart!</button>
         </td>
 
-        <td><b>$<span id="total">{{my_cpu.price}}</span></b></td>
+        <td><b>$<span id="total">{{product.price}}</span></b></td>
       </tr>
       
     </tbody>

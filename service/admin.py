@@ -1,10 +1,11 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Purchase,Order
+from .models import OrderItems
 
-class PurchaseAdmin(admin.ModelAdmin):
-	list_display = ['customer','cpu','cpu_quantity','motherboard','motherboard_quantity','total_spend']
+class OrderItemsAdmin(admin.ModelAdmin):
+	list_display = ['content_object', 'qty', 'sold_price']
+	list_filter =['buyer', 'date_ordered', 'sold_product']
 
-admin.site.register(Purchase,PurchaseAdmin)
-admin.site.register(Order)
+admin.site.register(OrderItems, OrderItemsAdmin)
+#admin.site.register(Order)

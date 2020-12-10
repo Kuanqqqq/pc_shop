@@ -18,7 +18,6 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>ID</th>
                     <th>Socket</th>
                     <th>Voltage</th>
                     <th>Price</th>
@@ -30,7 +29,6 @@
                 {% for cpu in cpu_lst %}
                 <tr>
                     <td><a href="{% url 'cpu_details' pkk=cpu.id %}"> {{ cpu.cpu }}</a></td>
-                    <td>{{ cpu.id }}</td>
                     <td>{{cpu.socket}}</td>
                     <td> {{ cpu.voltage }}</td>
                     <td style="color:red"> {{ cpu.price }}</td>
@@ -46,10 +44,6 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
-
-    <div class="container">
-        <a href="#" class="btn btn-danger" role="button">Test buy the ID:1 product</a>
     </div>
 
     </body>

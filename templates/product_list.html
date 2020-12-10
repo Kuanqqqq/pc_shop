@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}<title>PC Table</title>{% endblock %}
+{% block content %}
+        <h2>Product Table</h2>
+        <p>The table shows {{ product_lst|length }} products with name, price and image</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Stock</th>
+                    <th>Voltage</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for product in product_lst %}
+                <!--{% if product.stock != 0 %}-->
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td> {{ product.voltage }}</td>
+                    <td style="color:red"> {{ product.price }}</td>
+                    <td> {% include 'image.html' %}</td>
+                    <td>
+                        <a href="{% url 'add_product' prod_name=prod_name pk=product.id %}?token={{ token }}" class="btn btn-success" role="button">Add To Build</a>
+                    </td>
+
+                    <td>
+                        <a href="{% url 'checkout' prod_name=prod_name pk=product.id %}?token={{ token }}" class="btn btn-info" role="button">Add To Cart</a>
+                    </td>
+                </tr>
+                <!--{% endif %} -->
+                {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
