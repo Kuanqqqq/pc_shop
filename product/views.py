@@ -70,7 +70,6 @@ def add_product(request, prod_name, pk):
     # eg: AMD Ryzen 5 3600
 
     product = product_type.objects.get(pk=pk)
-    print("product, ",product)
     # cpu = Cpu.objects.get(pk=pk)
     build = Build.objects.get(user_token=token)
     if prod_name == 'Cpu':
@@ -109,14 +108,8 @@ def cpu_image(request, num):
 
 
 def checkout(request, prod_name, pk):
-    print('prod_name: ', prod_name) #Gpu
-
     product_type = eval(prod_name) 
-    print('product_type: ', product_type) #<class 'product.models.Gpu'>
-
     product = product_type.objects.get(pk=pk)
-    print('product: ', product) #EVGA GeForce RTX 2060 SUPER 8 GB SC ULTRA
-
     return render(request, 'checkout.html', {'prod_name': prod_name, 'product': product})
 
 
@@ -135,31 +128,21 @@ def del_product(request, prod_name):
     # cpu = Cpu.objects.get(pk=pk)
 
     build = Build.objects.get(user_token=token)
-
     product_type = eval(prod_name)
-    
-
     if prod_name == 'Cpu':
        build.cpu = None
-
     elif prod_name == 'Cpu_cooler':
        build.cooler = None
-
     elif prod_name == 'Motherboard':
        build.motherboard = None
-
     elif prod_name == 'Memory':
        build.memory = None
-
     elif prod_name == 'Gpu':
        build.gpu = None
-
     elif prod_name == 'Power_supply':
        build.power = None
-
     elif prod_name == 'Product':
        build.monitor = None
-
     build.save()
     return redirect('/?token=' + build.user_token)
 
@@ -176,9 +159,7 @@ def stock_check(request, prod_name, pk):
     build = Build.objects.get(user_token=token)
     product_type = eval(prod_name)
     product = product_type.objects.get(pk=pk)
-
     return
-
 
 
 '''def all_cpu(request): # token as a parameter
