@@ -20,10 +20,7 @@ def main_page(request):
     print(token)  # RbVmGCkSQI
 
     if token and len(Build.objects.filter(user_token=token)):
-        print(len(Build.objects.filter(user_token=token)))  # 1
         config = Build.objects.get(user_token=token)  # Build object (63)
-        print(config)
-
     else:
         config = Build()
         config.user_token = ''.join(secrets.choice(alphabet) for i in range(10))
